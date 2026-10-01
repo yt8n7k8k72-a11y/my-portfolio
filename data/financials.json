@@ -1,0 +1,37 @@
+{
+  "company": "HD현대중공업",
+  "corp_code": "01390344",
+  "business_year": 2025,
+  "report_name": "사업보고서 (2025.12)",
+  "receipt_number": "20260320000859",
+  "filing_date": "20260320",
+  "statement_scope": "연결",
+  "currency": "KRW",
+  "fetched_at": "2026-10-01T00:00:00+09:00",
+  "source_urls": {
+    "financial_statements_api": "https://opendart.fss.or.kr/api/fnlttSinglAcntAll.json",
+    "original_document_api": "https://opendart.fss.or.kr/api/document.xml",
+    "filing_viewer": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260320000859"
+  },
+  "financials": [
+    {
+      "item": "매출액",
+      "amount_krw": 17580633257000,
+      "source": "OpenDART 단일회사 전체 재무제표",
+      "basis": "연결재무제표(CFS)"
+    },
+    {
+      "item": "영업이익",
+      "amount_krw": 2037510103000,
+      "source": "OpenDART 단일회사 전체 재무제표",
+      "basis": "연결재무제표(CFS)"
+    },
+    {
+      "item": "수주잔고",
+      "amount_krw": 56384472000000,
+      "source": "2025년 사업보고서 II. 사업의 내용 - 수주상황",
+      "basis": "2025-12-31 기말 합계"
+    }
+  ]
+}
+
