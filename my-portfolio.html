@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Portfolio</title>
+  <style>
+    :root { --navy:#1F3A5F; --sky:#E8F1FA; --ink:#203047; --muted:#5D6B7C; --line:#D5E0EC; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,"Noto Sans KR",sans-serif; color:var(--ink); background:#fff; line-height:1.6; }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(1080px, calc(100% - 40px)); margin:0 auto; }
+    header { border-bottom:1px solid var(--line); background:#fff; }
+    .nav { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { color:var(--navy); font-weight:800; font-size:1.2rem; letter-spacing:.02em; }
+    nav { display:flex; gap:22px; color:var(--muted); font-size:.95rem; }
+    nav a:hover { color:var(--navy); }
+    .hero { background:var(--sky); padding:82px 0 76px; }
+    .eyebrow { color:var(--navy); font-size:.9rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+    h1 { color:var(--navy); font-size:clamp(2.3rem, 6vw, 4.5rem); line-height:1.12; margin:14px 0 18px; max-width:760px; }
+    .lead { max-width:650px; margin:0; color:#40546B; font-size:1.13rem; }
+    .button { display:inline-block; margin-top:30px; padding:12px 20px; border:1px solid var(--navy); border-radius:8px; background:var(--navy); color:#fff; font-weight:700; }
+    .button:hover { background:#294C79; }
+    section { padding:70px 0; }
+    .section-title { color:var(--navy); margin:0 0 10px; font-size:1.8rem; }
+    .section-copy { color:var(--muted); margin:0 0 26px; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .card { border:1px solid var(--line); border-radius:8px; padding:24px; background:#fff; }
+    .card h3 { margin:0 0 8px; color:var(--navy); }
+    .card p { margin:0; color:var(--muted); }
+    .tag { display:inline-block; margin-top:18px; padding:5px 9px; border-radius:8px; background:var(--sky); color:var(--navy); font-size:.85rem; }
+    .about { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+    .contact { background:var(--sky); }
+    .contact-box { border:1px solid #C8D9EA; border-radius:8px; padding:25px; background:#fff; }
+    footer { padding:28px 0; border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; }
+    @media (max-width:700px) {
+      .wrap { width:min(100% - 28px, 1080px); }
+      .nav { min-height:64px; align-items:flex-start; flex-direction:column; justify-content:center; gap:4px; }
+      nav { gap:14px; font-size:.88rem; }
+      .hero { padding:58px 0 54px; }
+      section { padding:52px 0; }
+      .grid, .about { grid-template-columns:1fr; }
+      h1 { font-size:2.45rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top">MY PORTFOLIO</a>
+      <nav aria-label="주요 메뉴">
+        <a href="#about">소개</a><a href="#projects">프로젝트</a><a href="#contact">연락</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">Portfolio</div>
+        <h1>나의 작업과 이야기를<br>한 곳에 담았습니다.</h1>
+        <p class="lead">이 문장을 나를 소개하는 짧은 문장으로 바꿔 보세요. 내가 잘하는 일과 만들고 싶은 것을 간결하게 보여주는 공간입니다.</p>
+        <a class="button" href="#projects">작업 둘러보기</a>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap about">
+        <div>
+          <h2 class="section-title">소개</h2>
+          <p class="section-copy">이곳에 본인 소개를 입력하세요. 관심 분야, 작업 방식, 앞으로의 목표를 적으면 좋습니다.</p>
+        </div>
+        <div class="card">
+          <h3>About me</h3>
+          <p>이름과 소개 문구를 입력하는 자리입니다.<br>제공하지 않은 개인정보는 임의로 작성하지 않았습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" style="background:#F8FBFE;">
+      <div class="wrap">
+        <h2 class="section-title">프로젝트</h2>
+        <p class="section-copy">완성한 작업이나 진행 중인 프로젝트를 카드별로 추가해 보세요.</p>
+        <div class="grid">
+          <article class="card"><h3>프로젝트 01</h3><p>프로젝트 이름과 어떤 문제를 해결했는지 적어 주세요.</p><span class="tag">분야 / 역할</span></article>
+          <article class="card"><h3>프로젝트 02</h3><p>사용한 도구, 과정, 결과를 짧고 분명하게 소개해 주세요.</p><span class="tag">분야 / 역할</span></article>
+          <article class="card"><h3>프로젝트 03</h3><p>작업물을 볼 수 있는 링크나 이미지 설명을 추가해 주세요.</p><span class="tag">분야 / 역할</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <h2 class="section-title">연락</h2>
+        <div class="contact-box"><p style="margin:0;color:var(--muted);">연락받을 이메일이나 링크를 직접 입력해 주세요.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap">© My Portfolio · 내용은 필요에 따라 수정해 주세요.</div></footer>
+</body>
+</html>
