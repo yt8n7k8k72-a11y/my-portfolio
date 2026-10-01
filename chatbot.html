@@ -9,9 +9,11 @@
     * { box-sizing: border-box; }
     body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Malgun Gothic", "Apple SD Gothic Neo", Arial, sans-serif; line-height: 1.65; }
     main { width: min(900px, calc(100% - 32px)); margin: 0 auto; padding: 38px 0 52px; }
-    .top-link { display: grid; place-items: center; width: 56px; height: 56px; margin: 0 0 18px auto; border: 2px solid var(--green); border-radius: 50%; background: #fff; overflow: hidden; }
-    .top-link img { width: 50px; height: 50px; object-fit: contain; }
+    .top-links { display: flex; justify-content: flex-end; gap: 10px; margin: 0 0 18px; }
+    .top-link { display: grid; place-items: center; width: 52px; height: 52px; border: 2px solid var(--green); border-radius: 50%; background: #fff; overflow: hidden; }
+    .top-link img { width: 46px; height: 46px; object-fit: cover; }
     .top-link:hover, .top-link:focus-visible { border-color: var(--purple); box-shadow: 0 0 0 3px #eadff2; }
+    .modal-backdrop{position:fixed;inset:0;z-index:10;display:grid;place-items:center;padding:20px;background:rgba(23,35,29,.48)}.modal-backdrop[hidden]{display:none}.modal{width:min(420px,100%);padding:28px;border-radius:12px;background:#fff;box-shadow:0 16px 40px rgba(23,35,29,.24)}.modal h2{margin:0 0 10px;color:var(--green-dark);font-size:22px}.modal p{margin:0;color:#53645a}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}.modal-actions button{padding:10px 16px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font:inherit;font-weight:700;cursor:pointer}.modal-actions .confirm{border-color:var(--green);background:var(--green);color:#fff}
     header { border-left: 7px solid var(--purple); padding-left: 18px; }
     h1 { margin: 0; color: var(--green-dark); font-size: clamp(1.65rem, 5vw, 2.35rem); line-height: 1.25; }
     .subtitle { margin: 8px 0 0; color: #405449; }
@@ -39,7 +41,11 @@
 </head>
 <body>
   <main>
-    <a class="top-link" href="index.html" aria-label="포트폴리오로 돌아가기" title="포트폴리오로 돌아가기"><img src="agumon-navigation.png" alt=""></a>
+    <nav class="top-links" aria-label="페이지 이동">
+      <a class="top-link" href="index.html" aria-label="디지몬 리부트 포트폴리오로 이동" title="디지몬 리부트 · 포트폴리오"><img src="https://contents.oricon.co.jp/upimg/news/20200122/2153541_202001220766686001579666919e.jpg" alt="디지몬 리부트"></a>
+      <a class="top-link" href="company-info.html" data-company-link aria-label="디지몬의 신태일 회사 정보로 이동" title="디지몬의 신태일 · 회사 정보"><img src="https://wikimon.net/images/9/92/Yagami_taichi.jpg" alt="신태일"></a>
+      <a class="top-link" href="chatbot.html" aria-label="안전문서 검색으로 이동" title="안전문서 검색"><img src="agumon-navigation.png" alt="아구몬"></a>
+    </nav>
     <header>
       <h1>윤서의 교육용 안전문서</h1>
       <p class="subtitle">질문에 포함된 조항 제목의 핵심 단어로 교육용 안전규정을 찾습니다.</p>
@@ -60,6 +66,7 @@
       <p class="hint">조항 제목의 핵심 단어(예: 개인보호구, 고소작업, 밀폐공간, 전기)를 포함해 질문하세요.</p>
     </section>
   </main>
+  <div class="modal-backdrop" data-company-modal hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="company-modal-title"><h2 id="company-modal-title">HD현대중공업 회사 정보로 넘어가시겠습니까?</h2><p>확인하면 회사 정보 페이지로 이동합니다.</p><div class="modal-actions"><button type="button" data-company-cancel>취소</button><button type="button" class="confirm" data-company-confirm>확인</button></div></section></div>
   <script>
     // 문서 원문을 이 파일 안에 보관하며, 외부 파일이나 API를 읽지 않습니다.
     const rules = [
@@ -86,31 +93,24 @@
       return element;
     }
     function showSearch() {
-      const question = input.value.trim();
       result.replaceChildren();
       addText(result, 'h2', '검색 결과');
-      if (!question || question.length < 2 || ambiguousWords.includes(question)) {
-        addText(result, 'p', '질문의 의미가 명확하지 않습니다. 확인하려는 상황이나 핵심 단어를 조금 더 구체적으로 입력해 주세요.');
-        return;
-      }
-      const matches = rules.filter(rule => rule.keywords.some(keyword => question.includes(keyword)));
-      if (!matches.length) {
-        addText(result, 'p', '입력한 질문과 관련된 조항을 찾지 못했습니다. 문서에 있는 조항의 핵심 단어를 포함해 다시 질문해주세요.');
-        return;
-      }
-      addText(result, 'p', '입력한 질문: ' + question, 'query');
-      matches.forEach(rule => {
-        const article = document.createElement('article');
-        article.className = 'article';
-        addText(article, 'h3', rule.title);
-        const list = document.createElement('ol');
-        rule.clauses.forEach(clause => addText(list, 'li', clause));
-        article.append(list);
-        result.append(article);
-      });
+      addText(result, 'p', '윤서누님 최고');
     }
     document.querySelector('#searchButton').addEventListener('click', showSearch);
     input.addEventListener('keydown', event => { if (event.key === 'Enter') showSearch(); });
+    const companyLink = document.querySelector('[data-company-link]');
+    const companyModal = document.querySelector('[data-company-modal]');
+    const cancelButton = document.querySelector('[data-company-cancel]');
+    const confirmButton = document.querySelector('[data-company-confirm]');
+    companyLink.addEventListener('click', (event) => { event.preventDefault(); companyModal.hidden = false; confirmButton.focus(); });
+    cancelButton.addEventListener('click', () => { companyModal.hidden = true; companyLink.focus(); });
+    confirmButton.addEventListener('click', () => { window.location.href = companyLink.href; });
+    companyModal.addEventListener('click', (event) => { if (event.target === companyModal) { companyModal.hidden = true; companyLink.focus(); } });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !companyModal.hidden) { companyModal.hidden = true; companyLink.focus(); } });
+  </script>
+  <script>
+    document.querySelector('.top-link img').src = 'reboot-navigation.png';
   </script>
 </body>
 </html>
